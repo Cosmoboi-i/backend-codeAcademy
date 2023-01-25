@@ -56,7 +56,7 @@ const server = http.createServer((req, res) => {
 
         }
     }
-    else if (url === '/todos/0') {
+    else if (url.match(/todos\/([0-9]+)/)) {
         let id = Number(url.slice(7));
         console.log(id);
         if (id >= tasks.length - 1) {
