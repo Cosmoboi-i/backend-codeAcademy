@@ -11,10 +11,7 @@ const PORT = process.env.PORT || 8000;
 //     res.end();
 // });
 
-const tasks = [];
-
-
-
+let tasks = [];
 
 const server = http.createServer((req, res) => {
 
@@ -23,7 +20,6 @@ const server = http.createServer((req, res) => {
     console.log(url);
 
     if (url === '/todos') {
-
         switch (method) {
             case 'GET': {
                 res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -47,7 +43,7 @@ const server = http.createServer((req, res) => {
                 break;
             }
             case 'DELETE': {
-                tasks.filter((task) => task['isComplete'] === false);
+                tasks = tasks.filter((task) => task['isComplete'] === false);
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 res.write(JSON.stringify(tasks));
                 res.end();
@@ -91,7 +87,6 @@ const server = http.createServer((req, res) => {
                     break;
                 }
             }
-
         }
         res.end();
     }
